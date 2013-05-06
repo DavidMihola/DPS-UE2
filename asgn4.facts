@@ -1,0 +1,2 @@
+assigned(knuth, a1, art_of_computer_programming).
+formteacherOf(knuth, a1).
