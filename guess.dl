@@ -1,0 +1,3 @@
+assigned(T, C, S) v -assigned(T, C, S) :- teacher(T), class(C, _), course(S).
+
+formteacherOf(T, C) v -formteacherOf(T, C) :- teacher(T), class(C, _).

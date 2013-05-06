@@ -1,0 +1,73 @@
+% Only courses from the given set (course/1) are used to classify
+% assignments, curricula, and teachers’ knowledge of courses.
+:- assigned(_, _, S), not course(S).
+:- curriculum(_, S, _), not course(S).
+:- qualified(_, S), not course(S).
+
+% The following is wrong:
+% course(C) :- qualified(_, C).
+
+% "Classes can only be in grade 1 – 4-"
+:- class(_, G), not #int(1,4,G).
+% OK.
+
+% "and cannot be classified to be in more than one grade."
+:- class(C, G1), class(C, G2), G1!=G2.
+% OK.
+
+% "If for some grade and course the curriculum is not given,
+%  assume that no lessons (i.e. 0) are required."
+courseInGrade(G, S) :- curriculum(G, S, L), L!=0.
+curriculum(G,S,0) :- not courseInGrade(G, S), class(_, G), course(S).
+
+% "No teacher should be assigned to teach a course in a class
+%  where no lessons are required."
+:- assigned(T,C,S), class(C,G), curriculum(G,S,0).
+
+% "Only teachers who are qualified for a course may teach it."
+:- assigned(T,_,S), not qualified(T,S).
+
+% "Each class should only be taught each course by at most one teacher."
+:- assigned(T1, C, S), assigned(T2, C, S), T1!=T2.
+
+% "No teacher has to be without any teaching assignment, i.e., unemployed."
+:- teacher(T), not assignedToAClass(T).
+assignedToAClass(T) :- assigned(T, _, _).
+
+% "No teacher should teach more than 4 different classes."
+% Let's try to first just look at teachers and classes (without specific courses):
+teaches(T,C) :- assigned(T,C,_).
+
+% "A teacher may not teach a class he has a relative in, except
+%  when there is a relative in every class, to which he or she
+%  could teach at least one course. In that case, he or she may
+%  teach a single class with a relative in it (and any number of
+%  courses in that class)."
+
+% OK, let's put this another way: Under no circumstances is a teacher
+% allowed to teach more than one class in which he has relatives. If
+% he teaches two classes and has relatives in both, they must be the
+% same class:
+:- hasRelativeIn(T,C1), assigned(T, C1, _), hasRelativeIn(T, C2), assigned(T, C2, _), C1 != C2.
+
+% Also, no teacher schould teach a class in which he has a relative,
+% except if he has relatives in all classes. To put it yet another way:
+% No teacher should teach a class in which he has a relative if he is also
+% assigned to classes in which he has no relatives:
+:- hasRelativeIn(T, C), assigned(T, C, _), assignedToClassWithoutRelatives(T).
+
+assignedToClassWithoutRelatives(T) :- assigned(T, C, _), not hasRelativeIn(T, C).
+
+% "No teacher should be required to spend more than 24 hours
+%  preparing lessons every week, whereas each lesson for grades
+%  1 and 2 accounts for 1 hour of preparation and each lesson for
+%  grades 3 and 4 accounts for 2 hours of preparation.
+
+% "No class has more than one form teacher."
+:- formteacherOf(T1,C), formteacherOf(T2,C), T1!=T2.
+
+% "A class’s form teacher must be teaching that class."
+:- formteacherOf(T,C), not assigned(T,C,S), course(S).
+
+% "No teacher should be form teacher at more than one class."
+:- formteacherOf(T,C1), formteacherOf(T,C2), C1!=C2.
