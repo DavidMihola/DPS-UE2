@@ -1,0 +1,70 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     check.dl
+% test subject:         (i1) Only subjects from the given set (subject/1) are used to
+%                       classify assignments, curricula and teachers’ knowledge of subjects.
+% expected answer sets: 0
+% explanation:          Unknown subject 'italian' is being used in the curriculum
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha1, 1).
+class(alpha2, 2).
+
+% curriculum(G,S,L).
+curriculum(1, fun, 10).
+
+curriculum(2, math, 5).
+curriculum(2, german, 5).
+curriculum(2, italian, 2). %!
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(feynman).
+qualified(feynman,fun).
+qualified(feynman,math).
+
+teacher(pauli).
+qualified(pauli,math).
+qualified(pauli,german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).
+assigned(feynman, alpha1, fun).
+
+assigned(pauli,   alpha2, math).
+assigned(pauli,   alpha2, german).
+
+
+% formteacherOf(T,C).
+formteacherOf(feynman,  alpha1).
+formteacherOf(pauli,    alpha2).

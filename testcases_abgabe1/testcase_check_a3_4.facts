@@ -1,0 +1,67 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     check.dl
+% test subject:         (a3) Each class should only be taught each subject by at most one teacher.
+% expected answer sets: 1
+% explanation:          Classes alpha1 and alpha2 are taught math and german by two teachers,
+%                       such that each teacher teaches math and german to only one of the classes.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha2, 2).
+class(beta2, 2).
+
+% curriculum(G,S,L).
+curriculum(2, math, 5).
+curriculum(2, german, 5).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(feynman).
+qualified(feynman, math).
+qualified(feynman, german).
+
+teacher(pauli).
+qualified(pauli, math).
+qualified(pauli, german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).
+assigned(pauli,   alpha2, math).
+assigned(pauli,   beta2,  german).
+
+assigned(feynman, beta2,  math).
+assigned(feynman, alpha2, german).
+
+% formteacherOf(T,C).
+formteacherOf(pauli,   alpha2).
+formteacherOf(feynman, beta2).

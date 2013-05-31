@@ -1,0 +1,77 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     check.dl
+% test subject:         (f2) A class's form teacher must be teaching that class.
+% expected answer sets: 1
+% explanation:          Each teacher is only a form teacher to some class that he is
+%                       teaching.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha1, 1).
+class(beta1,  1).
+class(alpha2, 2).
+class(beta2,  2).
+
+% curriculum(G,S,L).
+curriculum(1, fun, 10).
+
+curriculum(2, math, 5).
+curriculum(2, german, 4).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(feynman).
+qualified(feynman,fun).
+qualified(feynman,math).
+
+teacher(bohr).
+qualified(bohr,fun).
+qualified(bohr,math).
+qualified(bohr,german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).
+assigned(feynman, alpha1, fun).
+
+assigned(bohr,    beta1,  fun).
+
+assigned(bohr,    alpha2, math).
+assigned(bohr,    alpha2, german).
+
+assigned(feynman, beta2,  math).
+assigned(bohr,    beta2,  german).
+
+
+% formteacherOf(T,C).
+formteacherOf(feynman,  alpha1).
+formteacherOf(bohr,     alpha2).

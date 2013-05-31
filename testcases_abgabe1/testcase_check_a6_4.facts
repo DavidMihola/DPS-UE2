@@ -1,0 +1,76 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     check.dl
+% test subject:         (a6) A teacher may not teach a class he has a relative in, except when
+%                       there's a relative in every class, to which he or she could teach at
+%                       least one subject. In that case he or she may teach a single class with
+%                       a relative in it (and any number of subjects in that class).
+% expected answer sets: 0
+% explanation:          Teacher feynman has relatives in every class he might teach, therefore
+%                       it is ok for him to be assigned to teach in a class he has relatives in;
+%                       however it is not ok for him to teach in more than one such class.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha1, 1).
+class(alpha2, 2).
+
+% curriculum(G,S,L).
+curriculum(1, fun, 10).
+
+curriculum(2, math, 5).
+curriculum(2, german, 5).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(feynman).
+hasRelativeIn(feynman,alpha1).
+hasRelativeIn(feynman,alpha2).
+qualified(feynman,fun).
+qualified(feynman,math).
+
+teacher(pauli).
+hasRelativeIn(pauli,alpha1).
+qualified(pauli,math).
+qualified(pauli,german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).
+assigned(feynman, alpha1, fun).
+
+assigned(feynman, alpha2, math). %!
+assigned(pauli,   alpha2, german).
+
+
+% formteacherOf(T,C).
+formteacherOf(feynman,  alpha1).
+formteacherOf(pauli,    alpha2).

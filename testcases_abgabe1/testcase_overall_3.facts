@@ -1,0 +1,96 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     guess.dl check.dl
+% test subject:         Guess and check solutions to the assignment problem.
+% expected answer sets: lots and lots
+% explanation:          Complex test case with lots of answers.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha1, 1).
+class(beta1,  1).
+class(alpha2, 2).
+class(beta2,  2).
+class(alpha3, 3).
+class(alpha4, 4).
+
+% curriculum(G,S,L).
+curriculum(1, fun, 10).
+
+curriculum(2, math, 4).
+curriculum(2, german, 4).
+
+curriculum(3, math, 4).
+curriculum(3, german, 4).
+curriculum(3, english, 4).
+
+curriculum(4, math, 3).
+curriculum(4, german, 3).
+curriculum(4, english, 2).
+curriculum(4, logic, 5).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(bohr).
+qualified(bohr,math).
+qualified(bohr,english).
+
+teacher(einstein).
+qualified(einstein,fun).
+qualified(einstein,math).
+
+teacher(fermi).
+qualified(fermi,fun).
+% qualified(fermi,math).
+qualified(fermi,english).
+
+teacher(feynman).
+qualified(feynman,fun).
+% qualified(feynman,math).
+% qualified(feynman,english).
+qualified(feynman,logic).
+
+teacher(pauli).
+qualified(pauli,math).
+% qualified(pauli,german).
+qualified(pauli,english).
+% qualified(pauli,logic).
+
+teacher(planck).
+qualified(planck,math).
+qualified(planck,german).
+qualified(planck,english).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+course(english).
+course(logic).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).

@@ -1,0 +1,105 @@
+%
+% Testcase for "declarative problem solving"
+% summer term 2013
+% project 2 - Answer Set Programing Basics
+%
+% files under test:     check.dl
+% test subject:         (f2) A class's form teacher must be teaching that class.
+% expected answer sets: 0
+% explanation:          Teacher feynman is form teacher of class alpha3 but not
+%                       teaching that class.
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% classes.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% class(C,G).
+class(alpha1, 1).
+class(alpha2, 2).
+class(alpha3, 3).
+class(alpha4, 4).
+
+% curriculum(G,S,L).
+curriculum(1, fun, 10).
+
+curriculum(2, math, 5).
+curriculum(2, german, 5).
+
+curriculum(3, math, 4).
+curriculum(3, german, 4).
+curriculum(3, english, 4).
+
+curriculum(4, math, 3).
+curriculum(4, german, 3).
+curriculum(4, english, 2).
+curriculum(4, logic, 5).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% teachers.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% teacher(T).
+% hasRelativeIn(T,C).
+% qualified(T,S).
+
+teacher(bohr).
+qualified(bohr,math).
+qualified(bohr,english).
+
+teacher(fermi).
+qualified(fermi,math).
+qualified(fermi,english).
+
+teacher(feynman).
+qualified(feynman,fun).
+qualified(feynman,math).
+qualified(feynman,english).
+qualified(feynman,logic).
+
+teacher(pauli).
+qualified(pauli,math).
+qualified(pauli,german).
+qualified(pauli,english).
+qualified(pauli,logic).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% subjects.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% course(S).
+course(fun).
+course(math).
+course(german).
+course(english).
+course(logic).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% asgn.dl
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% assigned(T,C,S).
+assigned(feynman, alpha1, fun).
+
+assigned(pauli,   alpha2, math).
+assigned(pauli,   alpha2, german).
+
+assigned(bohr,    alpha3, math).
+assigned(pauli,   alpha3, german).
+assigned(bohr,    alpha3, english).
+
+assigned(bohr,    alpha4, math).
+assigned(pauli,   alpha4, german).
+assigned(fermi,   alpha4, english).
+assigned(feynman, alpha4, logic).
+
+
+% formteacherOf(T,C).
+% formteacherOf(feynman,  alpha1).
+% formteacherOf(pauli,    alpha2).
+formteacherOf(feynman,  alpha3).
+formteacherOf(fermi,    alpha4).
