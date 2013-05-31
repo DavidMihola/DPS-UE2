@@ -1,2 +1,17 @@
-assigned(knuth, a1, art_of_computer_programming).
-formteacherOf(knuth, a1).
+% This test case has 3 teachers with equal qualifications.
+% To keep to the 24 hour preparation limit, two of those
+% teachers must each teach one of the level 4 classes in 
+% computer programming while the third teacher must teach all
+% other classes. This results in 6 possible permutations, of
+% which the following is one:
+
+formteacherOf(knuth, b4).
+formteacherOf(the_other_knuth, a4).
+formteacherOf(third_knuth, a1).
+
+assigned(knuth,b4,art_of_computer_programming).
+assigned(the_other_knuth,a4,art_of_computer_programming).
+assigned(third_knuth,a1,art_of_computer_programming).
+assigned(third_knuth,a1,cooking).
+assigned(third_knuth,a4,cooking).
+assigned(third_knuth,b4,cooking).

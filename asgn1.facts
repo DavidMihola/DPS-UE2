@@ -1,2 +1,7 @@
+% Test case 1 is a minimal example: There is only 1 class, 1 teacher
+% and 1 required course. Note that courses lists another course (cooking)
+% which is not referenced in the curriculum - this is not a violation of
+% the specifications and is therefore not an obstacle for the solution.
+
 assigned(knuth, a1, art_of_computer_programming).
 formteacherOf(knuth, a1).

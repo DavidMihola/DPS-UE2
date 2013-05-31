@@ -1,2 +1,14 @@
-assigned(knuth, a1, art_of_computer_programming).
-formteacherOf(knuth, a1).
+% This test case is a lot like test case 2 but adds relatives.
+% As it turns out, every teacher has relatives in all classes.
+% Since one teacher must teach 3 classes (to keep to the 24 hour
+% preparation limit), there is no valid solution for this case.
+
+formteacherOf(knuth,a4).
+formteacherOf(the_other_knuth,b4).
+formteacherOf(third_knuth,a1).
+assigned(knuth,a4,art_of_computer_programming).
+assigned(the_other_knuth,b4,art_of_computer_programming).
+assigned(third_knuth,a1,art_of_computer_programming).
+assigned(third_knuth,a1,cooking).
+assigned(third_knuth,a4,cooking).
+assigned(third_knuth,b4,cooking).

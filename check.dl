@@ -4,9 +4,6 @@
 :- curriculum(_, S, _), not course(S).
 :- qualified(_, S), not course(S).
 
-% The following is wrong:
-% course(C) :- qualified(_, C).
-
 % "Classes can only be in grade 1 – 4-"
 :- class(_, G), not #int(1,4,G).
 % OK.
@@ -79,6 +76,8 @@ partialTeacherClassesSum(T, C, S) :- firstClass(C), teaches(T, C, S).
 partialTeacherClassesSum(T, C2, S) :- succClass(C1, C2), partialTeacherClassesSum(T, C1, S1), teaches(T, C2, S2), S = S1 + S2.
 teacherClassesSum(T, S) :- lastClass(C), partialTeacherClassesSum(T, C, S).
 
+:- teacherClassesSum(T, S), S>4.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % "A teacher may not teach a class he has a relative in, except
@@ -97,9 +96,10 @@ teacherClassesSum(T, S) :- lastClass(C), partialTeacherClassesSum(T, C, S).
 % except if he has relatives in all classes. To put it yet another way:
 % No teacher should teach a class in which he has a relative if he is also
 % assigned to classes in which he has no relatives:
-:- hasRelativeIn(T, C), assigned(T, C, _), assignedToClassWithoutRelatives(T).
+:- hasRelativeIn(T, C), assigned(T, C, _), couldTeachClassWithoutRelatives(T).
 
 assignedToClassWithoutRelatives(T) :- assigned(T, C, _), not hasRelativeIn(T, C).
+couldTeachClassWithoutRelatives(T) :- qualified(T, S), class(C, G), curriculum(G, S, _), not hasRelativeIn(T, C).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -138,6 +138,8 @@ partialTeacherPreparationTotalSum(T, C, P) :- firstClass(C), teacherPreparationS
 partialTeacherPreparationTotalSum(T, C2, P) :- succClass(C1, C2), partialTeacherPreparationTotalSum(T, C1, P1), teacherPreparationSumPerClass(T, C2, P2), P = P1 + P2.
 teacherPreparationTotalSum(T, P) :- lastClass(C), partialTeacherPreparationTotalSum(T, C, P).
 
+:- teacherPreparationTotalSum(T, P), P > 24.
+
 % Ordering of courses:
 % C1 is a (direct or indirect) precursor of C2, if they are both
 % classes, and C1 < C2
@@ -171,7 +173,7 @@ lastCourse(C) :- course(C), not -lastCourse(C).
 :- formteacherOf(T1,C), formteacherOf(T2,C), T1!=T2.
 
 % "A class’s form teacher must be teaching that class."
-:- formteacherOf(T,C), not assigned(T,C,S), course(S).
+:- formteacherOf(T,C), teaches(T, C, 0).
 
 % "No teacher should be form teacher at more than one class."
 :- formteacherOf(T,C1), formteacherOf(T,C2), C1!=C2.

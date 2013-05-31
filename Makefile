@@ -7,7 +7,7 @@
 #
 
 #TODO: insert your student-id here:
-MNR=XXXXXXX
+MNR=9902433
 
 
 .PHONY : all zip

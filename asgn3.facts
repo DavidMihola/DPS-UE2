@@ -1,2 +1,5 @@
-assigned(knuth, a1, art_of_computer_programming).
-formteacherOf(knuth, a1).
+% There is no valid assignment for test case 3 because
+% there is only one teacher who is qualified for teaching
+% religion. Since there are 5 classes that need a teacher
+% for religion that teacher would have to teach 5 classes
+% which is forbidden.

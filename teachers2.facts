@@ -1,7 +1,14 @@
 teacher(knuth).
 
 qualified(knuth, art_of_computer_programming).
+qualified(knuth, cooking).
 
-%teacher(lehrer2).
+teacher(the_other_knuth).
 
-%qualified(lehrer2, art_of_computer_programming).
+qualified(the_other_knuth, art_of_computer_programming).
+qualified(the_other_knuth, cooking).
+
+teacher(third_knuth).
+
+qualified(third_knuth, art_of_computer_programming).
+qualified(third_knuth, cooking).

@@ -1,2 +1,17 @@
-assigned(knuth, a1, art_of_computer_programming).
-formteacherOf(knuth, a1).
+% Another variation of test cases 2 and 4. This time the relatives leave
+% exactly one valid assignment: Since third_knuth has no relatives in any
+% of the classes, he must be the one who teaches cooking to all classes
+% and computer programming to class a1. Since the_other_knuth has a relative
+% in class a4 he should preferably teach class b4. Finally, knuth has relatives
+% in all classes (that he could teach) so he _is_ allowed to teach on of them,
+% namely a4.
+
+formteacherOf(knuth,a4).
+formteacherOf(the_other_knuth,b4).
+formteacherOf(third_knuth,a1).
+assigned(knuth,a4,art_of_computer_programming).
+assigned(the_other_knuth,b4,art_of_computer_programming).
+assigned(third_knuth,a1,art_of_computer_programming).
+assigned(third_knuth,a1,cooking).
+assigned(third_knuth,a4,cooking).
+assigned(third_knuth,b4,cooking).

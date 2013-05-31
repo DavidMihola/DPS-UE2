@@ -1,3 +1,8 @@
 class(a1, 1).
+class(b1, 1).
+class(c1, 1).
+class(d1, 1).
+class(e1, 1).
 
-curriculum(1, art_of_computer_programming, 4).
+curriculum(1, turnen, 4).
+curriculum(1, religion, 2).

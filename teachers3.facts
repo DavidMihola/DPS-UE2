@@ -1,7 +1,11 @@
-teacher(knuth).
+teacher(anton).
+teacher(berta).
+teacher(caesar).
+teacher(dora).
+teacher(egon).
 
-qualified(knuth, art_of_computer_programming).
-
-%teacher(lehrer2).
-
-%qualified(lehrer2, art_of_computer_programming).
+qualified(anton, turnen).
+qualified(berta, turnen).
+qualified(caesar, turnen).
+qualified(dora, turnen).
+qualified(egon, religion).

@@ -1,7 +1,3 @@
 teacher(knuth).
 
 qualified(knuth, art_of_computer_programming).
-
-%teacher(lehrer2).
-
-%qualified(lehrer2, art_of_computer_programming).
