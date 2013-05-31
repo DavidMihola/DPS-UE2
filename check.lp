@@ -5,7 +5,8 @@
 :- qualified(_, S), not course(S).
 
 % "Classes can only be in grade 1 – 4-"
-:- class(_, G), not #int(1,4,G).
+:- class(_, G), G < 1.
+:- class(_, G), G > 4.
 % OK.
 
 % "and cannot be classified to be in more than one grade."
@@ -128,8 +129,8 @@ partialTeacherLessonsSumPerClass(T, C, S2, L) :- succCourse(S1, S2), partialTeac
 teacherLessonsSumPerClass(T, C, L) :- lastCourse(S), partialTeacherLessonsSumPerClass(T, C, S, L).
 
 % From this sum, we can calculate the number of hours of preparation needed:
-teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 1), P = L, #int(P).
-teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 2), P = L, #int(P).
+teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 1), P = L.
+teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 2), P = L.
 teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 3), P = L * 2.
 teacherPreparationSumPerClass(T, C, P) :- teacherLessonsSumPerClass(T, C, L), class(C, 4), P = L * 2.
 
