@@ -3,5 +3,14 @@
 % which is not referenced in the curriculum - this is not a violation of
 % the specifications and is therefore not an obstacle for the solution.
 
-assigned(knuth, a1, art_of_computer_programming).
-formteacherOf(knuth, a1).
+% assigned(T, C, S, L).
+assigned(knuth, a1, mathe, 4).
+formteacherOf(knuth, a2).
+
+assigned(donald, a1, kochen, 3).
+assigned(knuth, a1, kochen, 2).
+
+assigned(knuth, a2, mathe, 4).
+
+assigned(donald, a2, kochen, 3).
+assigned(knuth, a2, kochen, 2).

@@ -1,3 +1,10 @@
 teacher(knuth).
+teacher(donald).
 
-qualified(knuth, art_of_computer_programming).
+qualified(knuth, mathe).
+qualified(knuth, kochen).
+qualified(donald, kochen).
+
+preference(knuth, mathe, 3).
+preference(knuth, kochen, 1).
+
